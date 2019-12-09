@@ -1,5 +1,6 @@
 package Grafica;
 
+import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -13,6 +14,7 @@ public class AA {
 	private Grafo grafo;
 	Nodo salida;
 	Nodo llegada;
+	ArrayList<String> estacionesCompartidas;
 
 	public AA(String salida, String llegada) {
 
@@ -27,6 +29,14 @@ public class AA {
 		Nodo Tokyo = grafo.addNode("Tokyo",11 ,11 );
 		Nodo Akihabara = grafo.addNode("Akihabara",11 ,7 );
 		Nodo Ochanomizu = grafo.addNode("Ochanomizu",7 ,6 );
+		
+		this.estacionesCompartidas = new ArrayList<String>(){{
+			add("Shinjuku");
+			add("Yoyogi");
+			add("Tokyo");
+			add("Akihabara");
+			add("Ochanomizu");
+		}};
 		
 		// Estaciones Yamanote Line (verde)
 		Nodo Takadanobaba = grafo.addNode("Takadanobaba", 0, 2);
@@ -54,10 +64,10 @@ public class AA {
 		Nodo Otsuka = grafo.addNode("Otsuka",7 ,0 );
 		Nodo Ikebukuro = grafo.addNode("Ikebukuro",4 ,0 );
 		Nodo Mejiro = grafo.addNode("Mejiro",2 ,1 );	
-		Nodo Shinjuku_Yamanote = grafo.addNode("Shinjuku_Yamanote",0 ,7 );
-		Nodo Yoyogi_Yamanote = grafo.addNode("Yoyogi_Yamanote",0 ,10 );
-		Nodo Tokyo_Yamanote = grafo.addNode("Tokyo_Yamanote",11 ,11 );
-		Nodo Akihabara_Yamanote = grafo.addNode("Akihabara_Yamanote",11 ,7 );
+		Nodo Shinjuku_Yamanote = grafo.addNode("Shinjuku ",0 ,7 );
+		Nodo Yoyogi_Yamanote = grafo.addNode("Yoyogi ",0 ,10 );
+		Nodo Tokyo_Yamanote = grafo.addNode("Tokyo ",11 ,11 );
+		Nodo Akihabara_Yamanote = grafo.addNode("Akihabara ",11 ,7 );
 			
 		// Estaciones Sobu (amarilla)
 		Nodo Sendagaya = grafo.addNode("Sendagaya",1 ,11 );
@@ -66,15 +76,15 @@ public class AA {
 		Nodo Ichigaya = grafo.addNode("Ichigaya",4 ,9 );
 		Nodo Iidabashi = grafo.addNode("Iidabashi",5 ,8 );
 		Nodo Suidobashi = grafo.addNode("Suidobashi",6 ,7 );
-		Nodo Shinjuku_Sobu = grafo.addNode("Shinjuku_Sobu",0 ,7 );
-		Nodo Yoyogi_Sobu = grafo.addNode("Yoyogi_Sobu",0 ,10 );
-		Nodo Akihabara_Sobu = grafo.addNode("Akihabara_Sobu",11 ,7 );
-		Nodo Ochanomizu_Sobu = grafo.addNode("Ochanomizu_Sobu",7 ,6 );
+		Nodo Shinjuku_Sobu = grafo.addNode("Shinjuku  ",0 ,7 );
+		Nodo Yoyogi_Sobu = grafo.addNode("Yoyogi  ",0 ,10 );
+		Nodo Akihabara_Sobu = grafo.addNode("Akihabara  ",11 ,7 );
+		Nodo Ochanomizu_Sobu = grafo.addNode("Ochanomizu  ",7 ,6 );
 				
 		// Estaciones Chuo (roja) 
-		Nodo Shinjuku_Chuo = grafo.addNode("Shinjuku_Chuo",0 ,7 );
-		Nodo Ochanomizu_Chuo = grafo.addNode("Ochanomizu_Chuo",7 ,6 );
-		Nodo Tokyo_Chuo = grafo.addNode("Tokyo_Chuo",11 ,11 );
+		Nodo Shinjuku_Chuo = grafo.addNode("Shinjuku   ",0 ,7 );
+		Nodo Ochanomizu_Chuo = grafo.addNode("Ochanomizu   ",7 ,6 );
+		Nodo Tokyo_Chuo = grafo.addNode("Tokyo   ",11 ,11 );
 
 
 		
@@ -91,9 +101,9 @@ public class AA {
 		grafo.addEdge (Meguro, Ebisu, 3, "YamanoteLine");
 		grafo.addEdge (Ebisu, Shibuya, 2, "YamanoteLine");
 		grafo.addEdge (Shibuya, Harajuku, 2, "YamanoteLine");
-		grafo.addEdge (Harajuku, Yoyogi, 2, "YamanoteLine");
-		grafo.addEdge (Yoyogi, Shinjuku, 3, "YamanoteLine");
-		grafo.addEdge (Shinjuku, Shin_Okubo, 2, "YamanoteLine");
+		grafo.addEdge (Harajuku, Yoyogi_Yamanote, 2, "YamanoteLine");
+		grafo.addEdge (Yoyogi_Yamanote, Shinjuku_Yamanote, 3, "YamanoteLine");
+		grafo.addEdge (Shinjuku_Yamanote, Shin_Okubo, 2, "YamanoteLine");
 		grafo.addEdge (Shin_Okubo, Takadanobaba, 2, "YamanoteLine");
 		grafo.addEdge (Takadanobaba, Mejiro, 2, "YamanoteLine");
 		grafo.addEdge (Mejiro, Ikebukuro, 3, "YamanoteLine");
@@ -126,8 +136,8 @@ public class AA {
 		grafo.addEdge (Mejiro, Takadanobaba, 2, "YamanoteLine");
 		grafo.addEdge (Takadanobaba, Shin_Okubo, 2, "YamanoteLine");
 		grafo.addEdge (Shin_Okubo, Shinjuku_Yamanote, 2, "YamanoteLine");
-		grafo.addEdge (Shinjuku_Yamanote, Yoyogi, 3, "YamanoteLine");
-		grafo.addEdge (Yoyogi, Harajuku, 2, "YamanoteLine");
+		grafo.addEdge (Shinjuku_Yamanote, Yoyogi_Yamanote, 3, "YamanoteLine");
+		grafo.addEdge (Yoyogi_Yamanote, Harajuku, 2, "YamanoteLine");
 		grafo.addEdge (Harajuku, Shibuya, 2, "YamanoteLine");
 		grafo.addEdge (Shibuya, Ebisu, 2, "YamanoteLine");
 		grafo.addEdge (Ebisu, Meguro, 3, "YamanoteLine");
@@ -142,68 +152,68 @@ public class AA {
 		
 		// Conexiones SobuLine (amarilla)
 		// Ida
-		grafo.addEdge (Akihabara, Ochanomizu, 2, "SobuLine");
-		grafo.addEdge (Ochanomizu, Suidobashi, 4, "SobuLine");
+		grafo.addEdge (Akihabara_Sobu, Ochanomizu_Sobu, 2, "SobuLine");
+		grafo.addEdge (Ochanomizu_Sobu, Suidobashi, 4, "SobuLine");
 		grafo.addEdge (Suidobashi, Iidabashi, 1, "SobuLine");
 		grafo.addEdge (Iidabashi, Ichigaya, 1, "SobuLine");
 		grafo.addEdge (Ichigaya, Yotsuya, 2, "SobuLine");
 		grafo.addEdge (Yotsuya, Shinanomachi, 2, "SobuLine");
 		grafo.addEdge (Shinanomachi, Sendagaya, 2, "SobuLine");
-		grafo.addEdge (Sendagaya, Yoyogi, 1, "SobuLine");
-		grafo.addEdge (Yoyogi, Shinjuku, 2, "SobuLine");
+		grafo.addEdge (Sendagaya, Yoyogi_Sobu, 1, "SobuLine");
+		grafo.addEdge (Yoyogi_Sobu, Shinjuku_Sobu, 2, "SobuLine");
 		// Vuelta
-		grafo.addEdge (Shinjuku, Yoyogi, 2, "SobuLine");
-		grafo.addEdge (Yoyogi, Sendagaya, 1, "SobuLine");
+		grafo.addEdge (Shinjuku_Sobu, Yoyogi_Sobu, 2, "SobuLine");
+		grafo.addEdge (Yoyogi_Sobu, Sendagaya, 1, "SobuLine");
 		grafo.addEdge (Sendagaya, Shinanomachi, 2, "SobuLine");
 		grafo.addEdge (Shinanomachi, Yotsuya, 2, "SobuLine");
 		grafo.addEdge (Yotsuya, Ichigaya, 2, "SobuLine");
 		grafo.addEdge (Ichigaya, Iidabashi, 1, "SobuLine");
 		grafo.addEdge (Iidabashi, Suidobashi, 1, "SobuLine");
-		grafo.addEdge (Suidobashi, Ochanomizu, 4, "SobuLine");
-		grafo.addEdge (Ochanomizu, Akihabara, 2, "SobuLine");
+		grafo.addEdge (Suidobashi, Ochanomizu_Sobu, 4, "SobuLine");
+		grafo.addEdge (Ochanomizu_Sobu, Akihabara_Sobu, 2, "SobuLine");
 		
 		
 		// Conexiones ChuoLine (roja)
 		// Ida
-		grafo.addEdge (Tokyo_Chuo, Ochanomizu, 5, "ChuoLine");
-		grafo.addEdge (Ochanomizu, Shinjuku, 9, "ChuoLine");
+		grafo.addEdge (Tokyo_Chuo, Ochanomizu_Chuo, 5, "ChuoLine");
+		grafo.addEdge (Ochanomizu_Chuo, Shinjuku_Chuo, 9, "ChuoLine");
 		// Vuelta
-		grafo.addEdge (Shinjuku, Ochanomizu, 9, "ChuoLine");
-		grafo.addEdge (Ochanomizu, Tokyo_Chuo, 5, "ChuoLine");
+		grafo.addEdge (Shinjuku_Chuo, Ochanomizu_Chuo, 9, "ChuoLine");
+		grafo.addEdge (Ochanomizu_Chuo, Tokyo_Chuo, 5, "ChuoLine");
 
 
 		// Trasbordos
 		
 		// Tokyo
-		grafo.addEdge (Tokyo, Tokyo_Yamanote, 1, "Transbordo");
+		grafo.addEdge (Tokyo, Tokyo_Yamanote, 0, "Transbordo a linea Yamanote");
 		grafo.addEdge (Tokyo_Yamanote, Tokyo, 5, "Transbordo");
-		grafo.addEdge (Tokyo, Tokyo_Chuo, 1, "Transbordo");		
-		grafo.addEdge (Tokyo_Chuo, Tokyo, 5, "Transbordo");
+		grafo.addEdge (Tokyo, Tokyo_Chuo, 0, "Transbordo a linea Chuo");		
+		grafo.addEdge (Tokyo_Chuo, Tokyo, 5, "Transbordo d elinea chuo");
 		
 		// Akihabara
-		grafo.addEdge (Akihabara, Akihabara_Yamanote, 1, "Transbordo");
+		grafo.addEdge (Akihabara, Akihabara_Yamanote, 0, "Transbordo a linea Yamanote");
 		grafo.addEdge (Akihabara_Yamanote, Akihabara, 5, "Transbordo");
-		grafo.addEdge (Akihabara, Akihabara_Sobu, 1, "Transbordo");
+		grafo.addEdge (Akihabara, Akihabara_Sobu, 0, "Transbordo a linea Sobu");
 		grafo.addEdge (Akihabara_Sobu, Akihabara, 5, "Transbordo");
 		
 		// Ochanomizu
-		grafo.addEdge (Ochanomizu, Ochanomizu_Sobu, 1, "Transbordo");
+		grafo.addEdge (Ochanomizu, Ochanomizu_Sobu, 0, "Transbordo a linea Sobu");
 		grafo.addEdge (Ochanomizu_Sobu, Ochanomizu, 5, "Transbordo");
-		grafo.addEdge (Ochanomizu, Ochanomizu_Chuo, 1, "Transbordo");
+		grafo.addEdge (Ochanomizu, Ochanomizu_Chuo, 0, "Transbordo a linea Chuo");
 		grafo.addEdge (Ochanomizu_Chuo, Ochanomizu, 5, "Transbordo");
 		
 		// Yoyogi
-		grafo.addEdge (Yoyogi, Yoyogi_Yamanote, 1, "Transbordo");
+		grafo.addEdge (Yoyogi, Yoyogi_Yamanote, 0, "Transbordo a linea Yamanote");
 		grafo.addEdge (Yoyogi_Yamanote, Yoyogi, 5, "Transbordo");
-		grafo.addEdge (Yoyogi, Yoyogi_Sobu, 1, "Transbordo");
+		grafo.addEdge (Yoyogi, Yoyogi_Sobu, 0, "Transbordo a linea Sobu");
 		grafo.addEdge (Yoyogi_Sobu, Yoyogi, 5, "Transbordo");
 		
 		// Shinjuku
-		grafo.addEdge (Shinjuku, Shinjuku_Yamanote, 1, "Transbordo");
+		grafo.addEdge (Shinjuku, Shinjuku_Yamanote, 0, "Transbordo a linea Yamanote");
 		grafo.addEdge (Shinjuku_Yamanote, Shinjuku, 5, "Transbordo");
-		grafo.addEdge (Shinjuku, Shinjuku_Sobu, 1, "Transbordo");
+		grafo.addEdge (Shinjuku, Shinjuku_Sobu, 0, "Transbordo a linea Sobu");
 		grafo.addEdge (Shinjuku_Sobu, Shinjuku, 5, "Transbordo");
-		grafo.addEdge (Shinjuku, Shinjuku_Chuo, 1, "Transbordo");
+		grafo.addEdge (Shinjuku, Shinjuku_Chuo, 0, "Transbordo a linea Chuo");
 		grafo.addEdge (Shinjuku_Chuo, Shinjuku, 5, "Transbordo");
 		
 		Iterator<Edge> l = grafo.getMap().get(salida).iterator();
@@ -251,11 +261,8 @@ public class AA {
 				while (l.hasNext() && cond) {
 					tramo = l.next();
 					if (((Nodo) tramo.n2).getNombre() == nodo2.getNombre()) {
-						if (cond && linea == lineaA) {
-							linea = tramo.getLabel();
-							cond = false;
-						} else
-							linea = tramo.getLabel();
+						linea = tramo.getLabel();
+						break;
 					}
 				}
 				lineaA = linea;
@@ -263,13 +270,25 @@ public class AA {
 				linea = "";
 			Pixel pixel = new Pixel(nodo.getX(), nodo.getY(), nodo.getNombre(), linea);
 			recorrido.add(pixel);
+			
 		}
 		// Save travel time in last pixel
 		if (recorrido.isEmpty()) {
 			throw new RuntimeException("Empty recorrido list");
 		}
-		recorrido.get(recorrido.size()-1).setDistance(recordTravelTime(grafo, recorrido));
-		return recorrido;
+		int minutos = recordTravelTime(grafo, recorrido);
+		
+		// Quitar transbordos duplicados
+		List<Pixel> recorridoOut = new ArrayList<Pixel>();
+		for (Pixel pix : recorrido) {
+			if ( (! estacionesCompartidas.contains(pix.getNombre())) ){
+				recorridoOut.add(pix);
+			}
+		}
+		recorridoOut.get(recorridoOut.size() - 1).setDistance(minutos);
+		
+		return recorridoOut;
+
 	}
 
 	private int recordTravelTime(Grafo grafo, List<Pixel> recorrido) {
@@ -285,9 +304,10 @@ public class AA {
 			nameNode2 = pixel2.Nombre;
 
 			for (Edge edge : grafo.getGrafoEdges()) {
-				if ((edge.n1.getLabel().equals(nameNode1) && edge.n2.getLabel().equals(nameNode2)) ||
-						(edge.n2.getLabel().equals(nameNode1) && edge.n1.getLabel().equals(nameNode2))) {
+				if ((edge.n1.getLabel().equals(nameNode1) && edge.n2.getLabel().equals(nameNode2))) {
 					travelTime += edge.id;
+					System.out.println(edge.id);
+					break;
 				}
 			}
 		}
